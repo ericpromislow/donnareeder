@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @title ? "#{@title} | DonnaReeder" : 'DonnaReeder' %></title>
+    <title><%= yield(:title) %> | DonnaReeder</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
