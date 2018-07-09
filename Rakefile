@@ -4,3 +4,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task :rubocop do
+  require 'rubocop'
+  cli = RuboCop::CLI.new
+  exit_code = cli.run(%w(app lib test --auto-correct))
+  exit(exit_code) if exit_code != 0
+end

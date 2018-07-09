@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+
+# rubocop:disable Style/MixinUsage
 include FileUtils
 
 # path to your application root.
