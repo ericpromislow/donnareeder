@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates(:email, presence:true, length: {maximum: MAX_EMAIL_LENGTH}, uniqueness:{ case_sensitive: false},
             format: { with: VALID_EMAIL_REGEX})
   # This line is needed even with presence of 'has_secure_password'
-  validates(:password, presence:true, length: {minimum: MIN_PASSWORD_LENGTH})
+  validates(:password, presence:true, length: {minimum: MIN_PASSWORD_LENGTH}, allow_nil: true)
   validates_presence_of :password_confirmation, on: :create
 
   before_save do

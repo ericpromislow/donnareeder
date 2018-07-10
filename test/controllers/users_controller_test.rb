@@ -6,4 +6,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should edit a user" do
+    user = users(:wally)
+    get edit_user_path(user)
+    assert_response :success
+  end
+
 end
