@@ -90,4 +90,8 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(name:'fReD', email:'fReD@x.dOot', password:pwd, password_confirmation:pwd)
     assert_not user.valid?
   end
+
+  test 'authenticated? should return false for a user with no remember digest' do
+    assert_not @user.authenticated?('')
+  end
 end
