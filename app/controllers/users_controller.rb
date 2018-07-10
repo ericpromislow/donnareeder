@@ -8,9 +8,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    debugger
-    if (@user = User.new(user_params))
-      @user.save
+    if (@user = User.new(user_params)).save
+      # Do something?
     else
       render 'new'
     end
