@@ -16,6 +16,7 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      <%= render 'layouts/appflash' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
