@@ -7,6 +7,8 @@ password = "precious"
   User.create!(name:  name,
                email: email,
                admin: true,
+               activated: true,
+               activated_at: Time.zone.now,
                password:              password,
                password_confirmation: password)
 end

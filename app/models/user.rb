@@ -16,7 +16,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
+
+  before_create :create_activation_digest
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -39,6 +41,13 @@ class User < ApplicationRecord
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  private
+
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
   
 end
