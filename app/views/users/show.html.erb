@@ -4,6 +4,10 @@
     <section class="user_info">
       <h1>
         <%= @user.name %>
+        <% if current_user.admin? || current_user?(@user)
+	   pronoun = current_user?(@user) ? "my" : "their" %>
+        | <%= link_to "delete #{pronoun} account", @user, method: :delete, data: { confirm: 'are you sure?' } %>
+        <% end %>
       </h1>
     </section>
   </aside>

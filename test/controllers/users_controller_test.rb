@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:wally)
     @archer = users(:archer)
+    @lana = users(:lana)
   end
   
   test "should get new" do
@@ -56,5 +57,52 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_template 'users/index'
   end
+
+  test 'should not allow the admin attr to be updated via the web interface' do
+    log_in_as(@archer)
+    assert_not(@archer.admin?)
+    patch user_path(@archer), params: { user: { admin: true }}
+    assert_not @archer.reload.admin?
+    assert_redirected_to user_url(@archer)
+  end
+
+  test 'destroy fails when not logged in' do
+    assert_no_difference 'User.count' do
+      delete user_path(@lana)
+    end
+    assert_not_nil User.find(@lana.id)
+    assert_redirected_to login_url
+  end
+
+  test 'non-admin should not delete the user' do
+    log_in_as(@archer)
+    assert_no_difference 'User.count' do
+      delete user_path(@lana)
+    end
+    assert_redirected_to root_url
+    assert_not_nil User.find_by_id(@lana.id)
+  end
+
+  test 'an admin should delete the user' do
+    log_in_as(@user)
+    assert_difference 'User.count', -1 do
+      delete user_path(@lana)
+    end
+    assert_nil User.find_by_id(@lana.id)
+  end
+
+  test 'a non-admin can delete himself' do
+    log_in_as(@lana)
+    assert_difference 'User.count', -1 do
+      delete user_path(@lana)
+    end
+    assert_nil User.find_by_id(@lana.id)
+    assert_redirected_to root_url
+    assert_not is_logged_in?
+  end
+    
+    
+    
+    
 
 end

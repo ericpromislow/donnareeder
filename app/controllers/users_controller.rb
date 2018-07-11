@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :index, :update]
+  before_action :logged_in_user, only: [:edit, :destroy, :index, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :is_admin_user,       only: [:index]
+  before_action :is_admin_or_correct_user, only: [:destroy]
   
  include UsersHelper
   
@@ -41,6 +42,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    # todo: delete all feeds and records etc. involving this user
+    me = current_user
+    if me.id == @user.id
+      # bye bye me
+      redirect_to root_url
+      @user.destroy
+      log_out
+    else
+      # must be an adminner
+      @user.destroy
+      redirect_to users_url
+    end
+    flash[:success] = "User #{@user.email} deleted"
+  end
+
   private
 
   def logged_in_user
@@ -57,6 +74,11 @@ class UsersController < ApplicationController
 
   def is_admin_user
     redirect_to root_url if !current_user.admin?
+  end
+
+  def is_admin_or_correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url if !(current_user.admin? || current_user?(@user))
   end
 
   def user_params

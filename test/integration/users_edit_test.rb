@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:wally)
+    @archer = users(:archer)
   end
 
   test 'not logged int' do
@@ -49,5 +50,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_url(@user)
     follow_redirect!
     assert_template 'users/edit'
+  end
+  
+  test "trying to set admin attr as non-admin" do
+    log_in_as(@archer)
+    patch user_path(@archer), params: { user: { admin: true }}
+    assert_redirected_to user_url(@archer)
+    follow_redirect!
+    assert_template 'users/show'
   end
 end
