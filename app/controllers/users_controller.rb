@@ -3,11 +3,14 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :is_admin_user,       only: [:index]
   
+ include UsersHelper
+  
   def new
     @user = User.new
   end
 
   def index
+    @users = User.paginate(page: params[:page])
   end
 
   def show
