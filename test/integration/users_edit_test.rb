@@ -5,7 +5,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user = users(:wally)
   end
 
+  test 'not logged int' do
+    get edit_user_path(@user)
+    assert_redirected_to login_path
+  end
+  
   test 'unsuccessful edit' do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: { user: {name: '',
@@ -21,6 +27,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test 'successful edit' do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     name = 'vassily'
@@ -34,5 +41,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name, @user.name
     assert_equal email, @user.email
+  end
+
+  test 'successful edit with friendly forwarding' do
+    get edit_user_path(@user)
+    log_in_as @user
+    assert_redirected_to edit_user_url(@user)
+    follow_redirect!
+    assert_template 'users/edit'
   end
 end
