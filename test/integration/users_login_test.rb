@@ -21,6 +21,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test 'login with a valid name' do
     user = User.create(name: 'ballis', email: 'ballis@x.com', password: 'precious', password_confirmation: 'precious')
     get login_path
+    user.update!(activated: true, activated_at: Time.zone.now)
     assert_template 'sessions/new'
     post login_path, params: { session: { email: "ballis@x.com", password: "precious" }}
     assert_redirected_to user_path(user.id)

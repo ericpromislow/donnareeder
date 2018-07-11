@@ -17,19 +17,37 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
   
   test "happy signup" do
+    delete logout_path
     get signup_path
     assert_difference 'User.count', 1 do
       pwd = 'a' * 12
-      post signup_path, params: { user: { name: 'ferd',
+      post users_path, params: { user: { name: 'ferd',
                                           email: 'user@valid.com',
                                           password: pwd,
                                           password_confirmation: pwd,
                                         }
                                 }
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    user = assigns(:user)
+    assert_not user.activated?
+    # Try to log in before activation
+    log_in_as(user)
+    assert_not is_logged_in?
+    # Invalid activation token
+    get edit_account_activation_path('splibitch', email: user.email)
+    assert_not is_logged_in?
+
+    # Valid token, wrong email
+    get edit_account_activation_path(user.activation_token, email: user.email + "X")
+    assert_not is_logged_in?
+
+    # Valid activation token
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
-    assert flash.key?(:success)
+
     assert is_logged_in?
   end
 end

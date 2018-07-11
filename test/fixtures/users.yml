@@ -3,6 +3,8 @@ wally:
   email: wally@a.com
   password_digest: <%= User.digest('precious') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 archer:
   name: Yoss Archer
