@@ -26,3 +26,39 @@ brendon:
   node_type: feed
   position: 1
   user: wally
+
+news:
+  node_type: node
+  title: "news"
+  position: 2
+  user: wally
+
+tech:
+  node_type: node
+  title: technology
+  position: 3
+  user: wally
+
+arts:
+  node_type: node
+  title: arts
+  position: 4
+  user: wally
+
+movies:
+  node_type: node
+  title: movies
+  position: 1
+  user: wally
+
+entertainment:
+  node_type: node
+  title: ennertainment
+  position: 2
+  user: wally
+
+business:
+  node_type: node
+  title: business
+  position: 5
+  user: wally

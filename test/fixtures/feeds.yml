@@ -11,3 +11,87 @@ brendon:
   description: javascript stuff
   xml_url: "http://planetjs.0x42.net/atom.xml"
   html_url: "http://planetjs.0x42.net/"
+
+news1:
+  feed_type: rss
+  title: BBC World News
+  description: BBC World News
+  xml_url: http://feeds.bbci.co.uk/news/world/rss.xml
+
+news2:
+  feed_type: rss
+  title: Washington Post
+  description: Washington Post
+  xml_url: http://feeds.washingtonpost.com/rss/rss_blogpost
+
+news3:
+  feed_type: rss
+  title: CNN
+  description: CNN
+  xml_url: http://rss.cnn.com/rss/edition_world.rss
+
+news4:
+  feed_type: rss
+  title: The Guardian
+  description: The Guardian
+  xml_url: https://www.theguardian.com/uk/rss
+
+news5:
+  feed_type: rss
+  title: The Economist
+  description: The Economist
+  xml_url: "http://www.economist.com/rss/"
+
+tech1:
+  feed_type: rss
+  title: TechCrunch
+  description: TechCrunch
+  xml_url: https://techcrunch.com/rssfeeds/
+
+tech2:
+  feed_type: rss
+  title: Wired
+  description: Wired
+  xml_url: https://www.wired.com/feed
+
+tech3:
+  feed_type: rss
+  title: Technology Review
+  description: Technology Review
+  xml_url: http://www.technologyreview.com/corp/rss.aspx
+
+tech4:
+  feed_type: rss
+  title: CNET News
+  description: CNET News
+  xml_url: "http://news.cnet.com/2009-1090-980549.html?tag=rb_content;rb_mtx"
+
+tech5:
+  feed_type: rss
+  title: Slashdot
+  description: Slashdot
+  xml_url: "http://rss.slashdot.org/Slashdot/slashdot"
+
+movies1:
+  feed_type: rss
+  title: NPR Movies
+  description: NPR Movies
+  xml_url: "https://www.npr.org/rss/rss.php?id=1045"
+
+entertainment1:
+  feed_type: rss
+  title: "E! News"
+  description: "E! News"
+  xml_url: "http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml"
+
+business1:
+  feed_type: rss
+  title: BusinessWire
+  description: BusinessWire
+  xml_url: "http://www.businesswire.com/portal/site/home/rss/"
+
+business2:
+  feed_type: rss
+  title: Financial Times
+  description: Financial Times
+  xml_url: "http://www.ft.com/cms/s/48ffafb6-5057-11da-bbd7-0000779e2340.htm?segid=70124&ftcamp=rss/home_link//updates_box/70124/"
