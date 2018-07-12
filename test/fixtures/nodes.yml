@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+languages:
+  node_type: node
+  title: "languages"
+  user: wally
+
+python:
+  node_type: node
+  title: python
+  user: wally
+
+javascript:
+  node_type: node
+  title: javascript
+  user: wally
+
+guido:
+  node_type: feed
+  user: wally
+
+brendon:
+  node_type: feed
+  user: wally

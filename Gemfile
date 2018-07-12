@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.4'
 
+gem 'ancestry'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bcrypt', '3.1.12'
 gem 'faker'
