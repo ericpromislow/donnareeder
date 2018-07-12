@@ -27,10 +27,11 @@ module UsersHelper
   def dump_the_list_aux(node, results)
     tree = node.subtree.arrange_serializable(order: :created_at)
     attrs = get_attrs(node).merge(class: node['node_type']).map{|k, v| %Q[#{k}="#{v}"]}.join(" ")
+      results << %Q[<li #{attrs}>#{get_label(node)}]
     if node['node_type'] == 'feed'
-      results << %Q[<li #{attrs}>#{get_label(node)}</li>\n]
+      results << %Q[</li>\n]
     else
-      results << %Q[<li #{attrs}>\n]
+      results << %Q[\n]
       results << %Q[<ul class="ul-nodelist">\n]
       node.children.each do |subnode|
         dump_the_list_aux(subnode, results)
