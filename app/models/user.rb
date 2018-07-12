@@ -15,6 +15,7 @@ class User < ApplicationRecord
   end
 
   has_secure_password
+  has_many :nodes, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

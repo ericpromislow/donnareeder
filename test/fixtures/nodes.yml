@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+languages:
+  node_type: node
+  feed_type: 
+  title: "languages"
+  description: 
+  xmlUrl: 
+  htmlUrl: 
+  user: wally
+
+python:
+  node_type: node
+  feed_type:
+  title: python
+  description: 
+  xmlUrl: 
+  htmlUrl: 
+  user: wally
+
+javascript:
+  node_type: node
+  feed_type:
+  title: javascript
+  description: 
+  xmlUrl: 
+  htmlUrl: 
+  user: wally
+
+guido:
+  node_type: feed
+  feed_type: rss
+  title: my favorite snakes
+  description: my favorite snakes
+  xmlUrl: "http://planetpython.0x42.net/atom.xml"
+  htmlUrl: "http://planetpython.0x42.net/"
+  user: wally
+
+brendon:
+  node_type: feed
+  feed_type: rss
+  title: "be brave, js"
+  description: javascript stuff
+  xmlUrl: "http://planetjs.0x42.net/atom.xml"
+  htmlUrl: "http://planetjs.0x42.net/"
+  user: wally
