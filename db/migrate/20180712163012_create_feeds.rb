@@ -4,8 +4,8 @@ class CreateFeeds < ActiveRecord::Migration[5.2]
       t.string :feed_type
       t.string :title
       t.string :description
-      t.string :xmlUrl
-      t.string :htmlUrl
+      t.string :xml_url
+      t.string :html_url
       t.references :node, foreign_key: true
 
       t.timestamps

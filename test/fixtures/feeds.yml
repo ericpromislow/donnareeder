@@ -1,15 +1,13 @@
 guido:
-  node_type: feed
   feed_type: rss
   title: my favorite snakes
   description: "my favorite snakes (descr)"
-  xmlUrl: "http://planetpython.0x42.net/atom.xml"
-  htmlUrl: "http://planetpython.0x42.net/"
+  xml_url: "http://planetpython.0x42.net/atom.xml"
+  html_url: "http://planetpython.0x42.net/"
 
 brendon:
-  node_type: feed
   feed_type: rss
   title: "be brave, js"
   description: javascript stuff
-  xmlUrl: "http://planetjs.0x42.net/atom.xml"
-  htmlUrl: "http://planetjs.0x42.net/"
+  xml_url: "http://planetjs.0x42.net/atom.xml"
+  html_url: "http://planetjs.0x42.net/"

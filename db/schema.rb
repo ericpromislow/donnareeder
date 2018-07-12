@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_211939) do
+ActiveRecord::Schema.define(version: 2018_07_12_163012) do
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "feed_type"
+    t.string "title"
+    t.string "description"
+    t.string "xml_url"
+    t.string "html_url"
+    t.integer "node_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["node_id"], name: "index_feeds_on_node_id"
+  end
+
+  create_table "nodes", force: :cascade do |t|
+    t.string "node_type"
+    t.string "title"
+    t.integer "position"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_nodes_on_ancestry"
+    t.index ["user_id"], name: "index_nodes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

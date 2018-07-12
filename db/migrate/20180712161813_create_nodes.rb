@@ -4,7 +4,7 @@ class CreateNodes < ActiveRecord::Migration[5.2]
       t.string :node_type
       t.string :title
       t.integer :position
-      t.references :users
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

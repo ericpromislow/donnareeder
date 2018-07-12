@@ -4,7 +4,7 @@ module UsersHelper
   end
 
   def get_label(node)
-    %w/title description htmlUrl xmlUrl/.each do |name|
+    %w/title description html_url xml_url/.each do |name|
       return sanitize(node[name]) if node[name].present?
     end
     "?"
@@ -12,7 +12,7 @@ module UsersHelper
 
   def get_attrs(node)
     attrs = {}
-    %w/feed_type title description xmlUrl htmlUrl/.each do |name|
+    %w/feed_type title description xml_url html_url/.each do |name|
       attrs[name] = sanitize(node[name]) if node[name].present?
     end
     attrs

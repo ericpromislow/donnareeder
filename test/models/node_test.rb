@@ -15,13 +15,13 @@ class NodeTest < ActiveSupport::TestCase
     assert_not node.valid?
   end
 
-  test 'should belong to a user' do
+  test 'needs a title' do
     node = Node.new(node_type:'node')
     assert_not node.valid?
   end
 
-  test 'should have a user' do
-    node = Node.new(node_type:'node', user:@user)
+  test 'should belong to a user' do
+    node = Node.new(node_type:'node', title:'t')
     assert_not node.valid?
   end
 
@@ -60,18 +60,26 @@ class NodeTest < ActiveSupport::TestCase
     assert_equal children[js_idx]['children'][0]['id'], @node_brendon.id
   end
 
-  test 'it should destroy all the nodes associated with a user' do
+  test 'it should destroy all the nodes associated with a user but not the feeds' do
     greenie = User.create!(name: 'greenie', email: 'g@a.com', password:'precious',  password_confirmation:'precious');
     node_count_1 = Node.count
+    feed_count_1 = Feed.count
     node1 = Node.create!(node_type: 'node', user: greenie, title: "top")
     node2 = Node.create!(node_type: 'node', user: greenie, title: "a1", parent:node1)
-    node3 = Node.create!(node_type: 'feed', user: greenie, title: "a3", parent:node2, xmlUrl:'x')
-    node4 = Node.create!(node_type: 'node', user: greenie, title: "a4", parent:node2)
+    node3 = Node.create!(node_type: 'feed', user: greenie, parent:node2)
+    node4 = Node.create!(node_type: 'feed', user: greenie, parent:node2)
+    node5 = Node.create!(node_type: 'node', user: greenie, title: "a4", parent:node2)
+    feed1 = Feed.create!(feed_type:'rss', title:'yop', xml_url:'x', node:node3)
+    feed2 = Feed.create!(feed_type:'rss', title:'yop', xml_url:'y', node:node3)
     node_count_2 = Node.count
-    assert_equal 4, node_count_2 - node_count_1
+    assert_equal 5, node_count_2 - node_count_1
+    feed_count_2 = Feed.count
+    assert_equal 2, feed_count_2 - feed_count_1
     greenie.destroy
     node_count_3 = Node.count
-    assert_equal -4, node_count_3 - node_count_2
+    feed_count_3 = Feed.count
+    assert_equal -5, node_count_3 - node_count_2
+    assert_equal feed_count_3, feed_count_2
   end
     
 end
