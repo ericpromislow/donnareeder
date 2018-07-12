@@ -4,8 +4,13 @@ module UsersHelper
   end
 
   def get_label(node)
-    %w/title description html_url xml_url/.each do |name|
-      return sanitize(node[name]) if node[name].present?
+    if node.node_type == 'node'
+      return sanitize(node.title)
+    else
+      feed = node.feed
+      %w/title description html_url xml_url/.each do |name|
+        return sanitize(feed[name]) if feed[name].present?
+      end
     end
     "?"
   end
@@ -25,10 +30,10 @@ module UsersHelper
   end
 
   def dump_the_list_aux(node, results)
-    tree = node.subtree.arrange_serializable(order: :created_at)
-    attrs = get_attrs(node).merge(class: node['node_type']).map{|k, v| %Q[#{k}="#{v}"]}.join(" ")
+    tree = node.subtree.arrange_serializable(order: :position)
+    attrs = get_attrs(node).merge(class: node.node_type).map{|k, v| %Q[#{k}="#{v}"]}.join(" ")
       results << %Q[<li #{attrs}>#{get_label(node)}]
-    if node['node_type'] == 'feed'
+    if node.node_type == 'feed'
       results << %Q[</li>\n]
     else
       results << %Q[\n]

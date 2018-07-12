@@ -2,22 +2,27 @@
 languages:
   node_type: node
   title: "languages"
+  position: 1
   user: wally
 
 python:
   node_type: node
   title: python
+  position: 1
   user: wally
 
 javascript:
   node_type: node
   title: javascript
+  position: 2
   user: wally
 
 guido:
   node_type: feed
+  position: 1
   user: wally
 
 brendon:
   node_type: feed
+  position: 1
   user: wally

@@ -32,6 +32,8 @@ end
 node_languages = Node.create!(nodes[:languages].merge(user: user))
 node_python = Node.create!(nodes[:python].merge(user: user, parent: node_languages))
 node_javascript = Node.create!(nodes[:javascript].merge(user: user, parent: node_languages))
-Feed.create!(feeds[:guido].merge(node: node_python))
-Feed.create!(feeds[:brendon].merge(node: node_javascript))
+node_guido = Node.create!(nodes[:guido].merge(user: user, parent: node_python))
+node_brendon = Node.create!(nodes[:brendon].merge(user: user, parent: node_javascript))
+Feed.create!(feeds[:guido].merge(node: node_guido))
+Feed.create!(feeds[:brendon].merge(node: node_brendon))
 

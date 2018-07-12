@@ -1,6 +1,6 @@
 class Node < ApplicationRecord
   belongs_to :user
-  has_many :feeds
+  has_one :feed
   has_ancestry
   validates(:node_type, inclusion: { in: %w/node feed/, message: "invalid node_type of %{value}: must be 'node' or 'feed'" })
   def validate
