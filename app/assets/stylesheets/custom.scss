@@ -6,6 +6,10 @@
 $gray-medium-light: #eaeaea;
 $gray-lighter: #777;
 
+$pink50s:  #f5e6e5;
+$green50s: #cde1c6;
+$yellow50s: #E3CE71;
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -147,6 +151,42 @@ input {
     color: $state-danger-text;
   }
 }
+
+$feedMargin: 25px;
+
+/* main blocks */
+div#feedTree {
+  border: $pink50s 24px solid;
+  margin-right: 0;
+  padding-left: 2px;
+  li {
+    padding-left: 0;
+  }
+  li.node {
+    list-style-image: url('folder-icon-16.png');
+  }
+  li.feed {
+    list-style-image: url('rss-icon-16.png');
+  }
+  ul {
+    list-style-image: none;
+    padding-left: $feedMargin;
+    ul ul ul {
+      padding-left: 0;
+    }
+  }
+}
+
+div#feedList {
+  border: $green50s 24px solid;
+  margin-left: 0;
+}
+
+div#currentArticle {
+  border: $yellow50s 24px solid;
+  margin-left: 0;
+}
+
 /* sidebar */
 
 aside {

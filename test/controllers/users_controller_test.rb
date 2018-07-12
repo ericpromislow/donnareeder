@@ -119,7 +119,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_path(@user)
     assert_equal response.status, 200
     assert_template 'users/show'
-    debugger
     assert_select 'ul[class="ul-nodelist"] li[class="node"] ul[class="ul-nodelist"] li[class="feed"]', text:'be brave, js'
   end    
 end

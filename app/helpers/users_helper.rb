@@ -4,6 +4,7 @@ module UsersHelper
   end
 
   def get_label(node)
+    # debugger
     if node.node_type == 'node'
       return sanitize(node.title)
     else

@@ -7,6 +7,22 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:wally)
   end
 
+  def setup_feed_tree
+    @node_languages = nodes(:languages)
+    @node_python = nodes(:python)
+    @node_javascript = nodes(:javascript)
+    @node_guido = nodes(:guido)
+    @node_brendon = nodes(:brendon)
+    @feed_guido = feeds(:guido)
+    @feed_brendon = feeds(:brendon)
+    @node_brendon.update!(parent: @node_javascript)
+    @node_guido.update!(parent: @node_python)
+    @node_python.update!(parent: @node_languages)
+    @node_javascript.update!(parent: @node_languages)
+    @feed_guido.update!(node: @node_guido)
+    @feed_brendon.update!(node: @node_brendon)
+  end
+
   test 'login with invalid info shows flash only once' do
     get login_path
     assert_template 'sessions/new'
@@ -31,6 +47,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test 'login with a fixture guy' do
+    setup_feed_tree
     get login_path
     post login_path, params: { session: { email: @user.email, password: 'precious' }}
     assert_redirected_to @user
@@ -51,6 +68,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
   
   test 'login and out with a fixture guy' do
+    setup_feed_tree
     get login_path
     post login_path, params: { session: { email: @user.email, password: 'precious' }}
     assert is_logged_in?
