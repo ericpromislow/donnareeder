@@ -11,4 +11,12 @@
       </h1>
     </section>
   </aside>
+  <section class="feeds">
+    <ul class="root-list">
+    <% nodes = @user.nodes.select{|x| x.parent.nil? }
+    nodes.each do |node| %>
+      <%= dump_the_list(node) %>
+    <% end %>
+    </ul>
+  </section>
 </div>
