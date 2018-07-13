@@ -1,6 +1,0 @@
-<% provide(:title, "Articles for #{@feed.title}") %>
-<ul class="articles">
-<% @articles.each do |article| %>
-  <li class="article"><%= article.pubDate %>: <b><h href="<%= article.link %>"><%= article.title %></a></b></li>
-<% end %>
-</ul>

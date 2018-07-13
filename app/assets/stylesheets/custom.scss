@@ -154,6 +154,11 @@ input {
 
 $feedMargin: 25px;
 
+div#feedList {
+  max-height: 400px;
+  overflow: scroll;
+}
+
 /* main blocks */
 div#feedTree {
   max-height: 600px;

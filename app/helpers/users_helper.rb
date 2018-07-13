@@ -6,14 +6,13 @@ module UsersHelper
   def get_label(node)
     # debugger
     if node.node_type == 'node'
-      return sanitize(node.title)
+      sanitize(node.title)
     else
       feed = node.feed
-      %w/title description html_url xml_url/.each do |name|
-        return sanitize(feed[name]) if feed[name].present?
-      end
+      href = sanitize(feed['html_url'] || feed['xml_url'])
+      label = sanitize(feed['title'] || feed['description'] || '?')
+      %Q[<a onclick='getArticleList(event, "#{feed_url(feed.id)}");' href="#{href}">#{label}</a>]
     end
-    "?"
   end
 
   def get_attrs(node)

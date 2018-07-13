@@ -3,7 +3,6 @@
 <div class="row">
   <div class="col-xs-4">
     <div id="feedTree">
-      <h1>Feed tree</h1>
       <section class="feeds">
         <ul class="root-list">
         <% nodes = @user.nodes.select{|x| x.parent.nil? }
@@ -19,15 +18,13 @@
     <div class="row">
       <div class="col-xs-12">
         <div id="feedList">
-          <h1>Feed list</h1>
-          <div class="sidebar-content">
+          <div class="sidebar-content" id="feedListContent">
           </div>
         </div>
       </div>
       <div class="col-xs-12">
         <div id="currentArticle">
-          <h1>currentArticle</h1>
-          <div class="main-content">
+          <div class="main-content" id="currentArticleContent">
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     stuff = JSON.parse(response.body)
     if stuff.size > 0
-      assert_equal %w/link pubDate title/, stuff[0].keys.sort
+      assert_equal %w/link pubDate title feed_id guid/.sort, stuff[0].keys.sort
     end
   end
 
