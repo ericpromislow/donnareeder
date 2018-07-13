@@ -40,12 +40,13 @@ Feed.create!(feeds[:brendon].merge(node: node_brendon))
 
 user = User.find_by_name('a2')
 nodes_by_name = {}
-%i/news tech arts movies entertainment business/.each do |name|
+%i/news tech arts movies entertainment business nasa/.each do |name|
   nodes_by_name[name] = Node.create!(nodes[name].merge(user: user))
 end
 
-nodes_by_name[:movies].update!(parent: nodes_by_name[:arts], user:user)
-nodes_by_name[:entertainment].update!(parent: nodes_by_name[:arts], user:user)
+nodes_by_name[:movies].update!(parent: nodes_by_name[:arts])
+nodes_by_name[:entertainment].update!(parent: nodes_by_name[:arts])
+nodes_by_name[:nasa].update!(parent: nodes_by_name[:tech])
 ptn = /^(.*?)(\d+)$/
 feeds.each do |name, value|
   m = ptn.match(name.to_s)

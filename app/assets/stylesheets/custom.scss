@@ -156,6 +156,8 @@ $feedMargin: 25px;
 
 /* main blocks */
 div#feedTree {
+  max-height: 600px;
+  overflow: scroll;
   border: $pink50s 24px solid;
   margin-right: 0;
   padding-left: 2px;
@@ -167,6 +169,7 @@ div#feedTree {
   }
   li.feed {
     list-style-image: url('rss-icon-16.png');
+    vertical-align: bottom;
   }
   ul {
     list-style-image: none;

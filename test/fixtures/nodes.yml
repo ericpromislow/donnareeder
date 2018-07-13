@@ -39,6 +39,12 @@ tech:
   position: 3
   user: wally
 
+nasa:
+  node_type: node
+  title: nasa
+  position: 1
+  user: wally
+
 arts:
   node_type: node
   title: arts

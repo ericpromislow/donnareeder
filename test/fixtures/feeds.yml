@@ -72,6 +72,36 @@ tech5:
   description: Slashdot
   xml_url: "http://rss.slashdot.org/Slashdot/slashdot"
 
+tech6:
+  feed_type: rss
+  title: MakeUseOf
+  description: MakeUseOf
+  xml_url: https://www.makeuseof.com/subscribe/
+
+tech7:
+  feed_type: rss
+  title: lifehacker
+  description: lifehacker
+  xml_url: http://lifehacker.com/index.xml
+
+nasa1:
+  feed_type: rss
+  title: Breaking News
+  description: Breaking News
+  xml_url: "https://www.nasa.gov/rss/dyn/breaking_news.rss"
+
+nasa2:
+  feed_type: rss
+  title: Education News
+  description: Education News
+  xml_url: "https://www.nasa.gov/rss/dyn/educationnews.rss"
+
+nasa3:
+  feed_type: rss
+  title: Image of the Day
+  description: Image of the Day
+  xml_url: https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss
+
 movies1:
   feed_type: rss
   title: NPR Movies

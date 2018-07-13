@@ -33,7 +33,7 @@ module UsersHelper
   def dump_the_list_aux(node, results)
     tree = node.subtree.arrange_serializable(order: :position)
     attrs = get_attrs(node).merge(class: node.node_type).map{|k, v| %Q[#{k}="#{v}"]}.join(" ")
-      results << %Q[<li #{attrs}>#{get_label(node)}]
+      results << %Q[<li #{attrs}><span class="nodeLabel">#{get_label(node)}</span>]
     if node.node_type == 'feed'
       results << %Q[</li>\n]
     else
