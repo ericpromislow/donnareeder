@@ -1,0 +1,14 @@
+<% provide(:title, 'all the feeds') %>
+<h1>Feeds:</h1>
+<%= will_paginate %>
+<ul class="feeds">
+  <% @feeds.each_with_index do |feed, index| %>
+    <li>
+      <%= item_num(@feeds, index + 1) %>: <%= link_to (feed.title || feed.description), feed %>
+      <% if current_user.try(:admin?) %>
+        | <%= link_to 'delete', feed, method: :delete, data: { confirm: 'are you sure?' } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

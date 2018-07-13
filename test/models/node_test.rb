@@ -36,16 +36,16 @@ class NodeTest < ActiveSupport::TestCase
     @node_python.update!(parent: @node_languages)
     @node_javascript.update!(parent: @node_languages)
     x1 = @user.nodes
-    assert_equal(5, x1.count)
+    assert_equal(12, x1.count)
 
     # Root nodes
     x2 = @user.nodes.where(ancestry: nil)
-    assert_equal(1, x2.count)
-    x2 = x2.first
-    assert_equal('languages', x2.title)
-    assert_equal('node', x2.node_type)
+    assert_equal(8, x2.count)
+    language_node = x2.find {|x| x['title'] == 'languages' }
+    assert_not_nil language_node
+    assert_equal('node', language_node.node_type)
     
-    x3 = x2.subtree.arrange_serializable(order: :created_at)
+    x3 = language_node.subtree.arrange_serializable(order: :created_at)
     assert_equal x3[0]['id'], @node_languages.id
     assert_equal x3[0]['children'].size, 2
     children = x3[0]['children']
